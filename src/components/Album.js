@@ -47,7 +47,8 @@ class Album extends Component {
 
   componentWillUnmount() {
     this.audioElement.src = null;
-    this.audioElement = null;
+    this.audioElement.removeEventListener('timeupdate', this.eventListeners.timeupdate);
+    this.audioElement.removeEventListener('durationchange', this.eventListeners.durationchange);
   }
   
   setSong(song) {
@@ -75,7 +76,7 @@ class Album extends Component {
 
   handleNextClick(){
     const currentIndex = this.state.album.songs.findIndex(song => this.state.currentSong === song);
-    const newIndex = Math.max(0, currentIndex + 1);
+    const newIndex = Math.min(this.state.album.songs.length - 1, currentIndex + 1);
     const newSong = this.state.album.songs[newIndex];
     this.setSong(newSong);
     this.play(newSong);
@@ -102,17 +103,17 @@ class Album extends Component {
           <tbody>
             {
               this.state.album.songs.map( (song, index) => 
-              <tr className="song" key={index} onClick={() => this.handleSongClick(song)} >
+                <tr className="song" key={index} onClick={() => this.handleSongClick(song)} >
                   <td className="song-actions">
-                   <button>
-                     <span className="song-number">{index+1}</span>
-                     <span className="ion-play"></span>
-                     <span className="ion-pause"></span>
-                   </button>
-                 </td>
-                 <td className="song-title">{song.title}</td>
-                 <td className="song-duration">{song.duration}</td>
-               </tr>
+                    <button>
+                      <span className="song-number">{index+1}</span>
+                      <span className="ion-play"></span>
+                      <span className="ion-pause"></span>
+                    </button>
+                  </td>
+                  <td className="song-title">{song.title}</td>
+                  <td className="song-duration">{song.duration}</td>
+                </tr>
               )}
           </tbody>
         </table>
