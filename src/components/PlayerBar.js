@@ -24,7 +24,8 @@ class PlayerBar extends Component {
               max="1" 
               min="0" 
               step="0.01" 
-            />   
+              onChange={this.props.handleTimeChange}
+            />
           <div className="total-time">{this.props.duration}</div> 
         </section>
         <section id="volume-control">
