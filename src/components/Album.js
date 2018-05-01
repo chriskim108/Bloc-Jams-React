@@ -95,6 +95,14 @@ class Album extends Component {
     this.audioElement.volume = newVolume;
     this.setState({currentVolume: newVolume});
   }
+
+  formatTime(seconds) {
+    if (isNaN(seconds)) return "-:--";
+     
+    let date = new Date(null);
+    date.setSeconds(seconds);
+    return date.toISOString().substr(14, 5);
+  }
   
   render() {
     return (
@@ -126,7 +134,7 @@ class Album extends Component {
                     </button>
                   </td>
                   <td className="song-title">{song.title}</td>
-                  <td className="song-duration">{song.duration}</td>
+                  <td className="song-duration">{this.formatTime(song.duration)}</td>
                 </tr>
               )}
           </tbody>
