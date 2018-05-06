@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import albumData from './../data/albums';
 import PlayerBar from './PlayerBar';
+import "./Album.css";
+import { ListGroup, ListGroupItem } from 'reactstrap';
 
 class Album extends Component {
   constructor(props) {
@@ -124,7 +126,7 @@ class Album extends Component {
           </colgroup>  
           <tbody>
             {
-              this.state.album.songs.map( (song, index) => 
+              this.state.album.songs.map( (song, index) =>  
                 <tr className="song" key={index} onClick={() => this.handleSongClick(song)} >
                   <td className="song-actions">
                     <button>
@@ -139,6 +141,7 @@ class Album extends Component {
               )}
           </tbody>
         </table>
+
         <PlayerBar
           isPlaying={this.state.isPlaying}
           currentSong={this.state.currentSong}
@@ -152,6 +155,7 @@ class Album extends Component {
           handleVolumeChange={(e) => this.handleVolumeChange(e)}
           formatTime={(seconds) => this.formatTime(seconds)}
         />
+
       </section>
     );
   }
