@@ -3,9 +3,28 @@
     padding-bottom: 50px;    
 }
 
+#album-title{
+    font-size:80px;
+    color:#ffffff;
+}
+
+.artist{
+    font-size:40px;
+    color:white;
+}
+
+#release-info{
+    font-size:20px;
+    color:white;
+}
+
 #song-list{
     margin-left: auto;
     margin-right: auto;
+}
+
+.song-title{
+    font-size:20px;
 }
 
 .album{
@@ -31,4 +50,12 @@ th {
 
 tbody{
     background-color:#c5d2dd;
+}
+
+.song-track-btn{
+    padding:5px 12px;
+    font-size:20px;
+    border-radius: 8px;
+    background-color: #e7e7e7; 
+    color: black;
 }
